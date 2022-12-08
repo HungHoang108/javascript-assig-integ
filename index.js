@@ -1,3 +1,11 @@
+// const test = ()=>{
+//   const arr =[1,2,3]
+//   for (var i = 0; i<arr.length; i++) {
+//     document.getElementById("country").innerHTML += arr[i];
+// }
+
+// }
+// test();
 /*
 1. Fix the bugs in the codes below, to make the console print out different numbers
 from 0 to 100
@@ -55,12 +63,12 @@ const dateFrom = new Date(500000);
 const dateTo = new Date(1000000000);
 
 const counter = (from, to) => {
-    const days = dateTo.getDate() - dateFrom.getDate();
-    const hours = dateTo.getHours() - dateFrom.getHours();
-    const minutes = dateTo.getMinutes() - dateFrom.getMinutes();
-    const seconds = dateTo.getSeconds() - dateFrom.getSeconds();
+  const days = dateTo.getDate() - dateFrom.getDate();
+  const hours = dateTo.getHours() - dateFrom.getHours();
+  const minutes = dateTo.getMinutes() - dateFrom.getMinutes();
+  const seconds = dateTo.getSeconds() - dateFrom.getSeconds();
 
-    return `${days} days - ${hours} hours - ${minutes} minutes - ${seconds} seconds`;
+  return `${days} days - ${hours} hours - ${minutes} minutes - ${seconds} seconds`;
 };
 const timer = counter(dateFrom, dateTo);
 console.log(timer);
@@ -73,11 +81,42 @@ The data fetched from url should be displayed in index.html.
 */
 
 const getAllCountries = () => {
-  /* provide your code here */
+  const url = "https://restcountries.com/v3.1/all";
+  const countries = [];
+  const result = async (url) => {
+    const data = await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        data.map((res) => {
+          countries.push(res.name.common);
+        });
+        countries.sort();
+        for (var i = 0; i < countries.length; i++) {
+          document.getElementById("country").innerHTML += `<p>${countries[i]}</p>` ;
+        }
+      });
+  };
+  result(url);
+
 };
 
 const getSingleCountry = () => {
-  /* provide your code here */
+  var country = document.getElementById("getSingleCountry").value;
+  const url = `https://restcountries.com/v3.1/name/${country}`;
+
+  const result = async (url) => {
+    const data = await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        data.map(res => {
+          document.getElementById("getCountry").innerHTML = res.name.common;
+          console.log(res.name.common)
+        })
+
+      });
+  };
+  result(url);
+  
 };
 
 getAllCountries();

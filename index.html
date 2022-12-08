@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Question 4 in index.js
         * write form with input and search button to search and display the found/notfound country
         * use grid to display all the countries fetched from the given url
         * no extra library, only vanilla CSS or SASS. Be creative in your own layout
      -->
+    <input id="getSingleCountry" type="text" value="" placeholder="country name" />
+    <button onclick="getSingleCountry()">Get country</button>
+    <h4>Country name:</h4>
+    <h5 id="getCountry"></h5>
+    <table>
+      <tr>
+        <th>All Countries</th>
+        <th>Country</th>
+      </tr>
+      <tr>
+        <td id="country"></td>
+        
+      </tr>
+    </table>
+
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
