@@ -1,23 +1,15 @@
-// const test = ()=>{
-//   const arr =[1,2,3]
-//   for (var i = 0; i<arr.length; i++) {
-//     document.getElementById("country").innerHTML += arr[i];
-// }
-
-// }
-// test();
 /*
 1. Fix the bugs in the codes below, to make the console print out different numbers
 from 0 to 100
  */
 
-// const printNum = () => {
-//   for (var i = 0; i <= 100; i++) {
-//     setTimeout(console.log(i), 1000);
-//   }
-// };
+const printNum = () => {
+  for (var i = 0; i <= 100; i++) {
+    setTimeout(console.log(i), 1000);
+  }
+};
 
-// printNum();
+printNum();
 
 /*
 2. Given the array below:
@@ -94,7 +86,7 @@ const getAllCountries = () => {
         for (var i = 0; i < countries.length; i++) {
           document.getElementById(
             "country"
-          ).innerHTML += `<p>${countries[i]}</p>`;
+          ).innerHTML += `<div class="border">${countries[i]}</div>`;
         }
       });
   };
@@ -148,7 +140,8 @@ console.log(folder); //expect to see ['New Folder', 'New Folder (1)', 'New Folde
 
 /* 
 6. Complete class Book:
-- class Book should have 3 properties: title (read-only, must be a string but cannot be empty), cost (private, must be positive number) and profit (private, positive number > 0 and =< 0.5)
+- class Book should have 3 properties: title (read-only, must be a string but cannot be empty), cost (private, must be positive number) 
+  and profit (private, positive number > 0 and =< 0.5)
 (error should be thrown if data is not valid)
 - give the logic to get book's price and profit separately.
 - give the logics to increase and decrease the price with a certain amount 
@@ -161,11 +154,40 @@ cost 14, profit 0.3 , tax 24% => expected price is 30.43
 */
 class Book {
   _title;
-  constructor(title, cost, profit) {}
+  constructor(title, cost, profit) {
+    if ((title && title.length < 1) || cost <= 0 || profit >= 0.5 || profit <= 0) {
+      throw Error("error");
+    } else {
+      this._title = title;
+      this.profit = profit;
+      this.cost = cost;
+    }
+  }
+  bookPrice() {
+    return this.cost / (1 - this.profit);
+  }
+  bookProfit() {
+    return this.bookPrice() * this.profit;
+  }
+  priceIncrease() {
+    return this.bookPrice() + 1;
+  }
+  priceDecrease() {
+    return this.bookPrice() - 1;
+  }
 }
-
-class TaxableBook {
+class TaxableBook extends Book {
   /* provide your code here */
+  constructor(title, cost, profit, taxRate) {
+    super();
+    this.cost = cost;
+    this.profit = profit;
+    this.taxRate = taxRate;
+  }
+
+  priceWithTax() {
+    return this.cost / (1 - this.profit - this.taxRate / 100);
+  }
 }
 
 const book1 = new Book("The Power of Habits", 14, 0.3);
