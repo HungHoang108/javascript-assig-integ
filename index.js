@@ -39,20 +39,20 @@ let myArr = [
   "2019-12-14",
   "2022-14-12",
 ];
-// const fixDate = (array) => {
-//   let finalArray = [];
+const fixDate = (array) => {
+  let finalArray = [];
 
-//   for (var i = 0; i < array.length; i++) {
-//     const childArray = array[i].split("-");
-//     childArray.sort(function (a, b) {
-//       return a - b;
-//     });
-//     finalArray.push(`${childArray[1]}-${childArray[0]}-${childArray[2]}`);
-//   }
-//   return finalArray;
-// };
-// let newArr = fixDate(myArr);
-// console.log(newArr);
+  for (var i = 0; i < array.length; i++) {
+    const childArray = array[i].split("-");
+    childArray.sort(function (a, b) {
+      return a - b;
+    });
+    finalArray.push(`${childArray[1]}-${childArray[0]}-${childArray[2]}`);
+  }
+  return finalArray;
+};
+let newArr = fixDate(myArr);
+console.log(newArr);
 
 /*
 3. Counter function
@@ -92,12 +92,13 @@ const getAllCountries = () => {
         });
         countries.sort();
         for (var i = 0; i < countries.length; i++) {
-          document.getElementById("country").innerHTML += `<p>${countries[i]}</p>` ;
+          document.getElementById(
+            "country"
+          ).innerHTML += `<p>${countries[i]}</p>`;
         }
       });
   };
   result(url);
-
 };
 
 const getSingleCountry = () => {
@@ -108,15 +109,13 @@ const getSingleCountry = () => {
     const data = await fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        data.map(res => {
+        data.map((res) => {
           document.getElementById("getCountry").innerHTML = res.name.common;
-          console.log(res.name.common)
-        })
-
+          console.log(res.name.common);
+        });
       });
   };
   result(url);
-  
 };
 
 getAllCountries();
@@ -129,7 +128,15 @@ to array, and so on.
 */
 
 const generateNewFolderName = (existingFolders) => {
-  /*  provide your code here */
+  const arrayLength = existingFolders.length;
+  const newFolder = `New Folder (${arrayLength})`;
+  const isFolderExisted = existingFolders.includes(newFolder);
+
+  if (existingFolders.length < 1) {
+    existingFolders.push("New Folder");
+  } else if (isFolderExisted == false) {
+    existingFolders.push(newFolder);
+  }
 };
 
 let folder = [];
